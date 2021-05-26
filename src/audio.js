@@ -1,7 +1,3 @@
-import React from 'react'
-
-const SoundCollection = () => {
-
     const sounds = [
         {
             "name": "Click",
@@ -21,14 +17,5 @@ const SoundCollection = () => {
         },
     ]
 
-    return (
-        <>
-
-            <h4> This is the SoundCollection </h4>
-            {/* <h5>{sounds}</h5> */}
-
-        </>
-    )
-}
-
-export default SoundCollection;
+    export default sounds;
+    

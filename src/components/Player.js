@@ -1,10 +1,12 @@
 import React from 'react'
 
+
 const Player = () => {
 
     function somethingHerePlayer() {
         return "The function in Player works"
     }
+
 
     return (
         <>
