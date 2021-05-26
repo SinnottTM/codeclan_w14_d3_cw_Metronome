@@ -1,19 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import SoundCollection from "../components/SoundCollection";
-import Slider from "../components/Slider";
-import Player from "../components/Player";
-import snd from "./sound";
+import snd from "./electronicBeep";
+import metroSnd from "./metronomeSound";
+import dogBork from "./dogBork";
 
 const MetronomeContainer = () => {
   let [BPM, setBPM] = useState(500);
   const [beepId, setBeepId] = useState(null);
   const [playing, setPlaying] = useState(false);
 
-  useEffect(()=> {
-      stopBeep()
-      if (playing) startBeep()
-  }, [BPM, playing])
+  useEffect(() => {
+    stopBeep();
+    if (playing) startBeep();
+  }, [BPM, playing]);
 
   let increaseBPM = () => {
     setBPM((BPM += 50));
@@ -27,6 +26,14 @@ const MetronomeContainer = () => {
     snd.play();
   }
 
+  function metronomeSound() {
+    metroSnd.play();
+  }
+
+  function dogBark() {
+    dogBork.play();
+  }
+
   function startBeep() {
     setBeepId(setInterval(electronicBeep, BPM));
   }
@@ -37,19 +44,26 @@ const MetronomeContainer = () => {
 
   return (
     <>
-      <h3> This is the Metro-Nope </h3>
-      <button onClick={()=>setPlaying(true)}>{"Start"}</button>
-      <button onClick={()=>setPlaying(false)}>{"Stop"}</button>
+      <h1> Welcome to the Metro-Nope </h1>
+      <button onClick={() => setPlaying(true)}>{"Start"}</button>
+      <button onClick={() => setPlaying(false)}>{"Stop"}</button>
       <br></br>
       <br></br>
       <button onClick={increaseBPM}>{"Increase BPM"}</button>
       <button onClick={decreaseBPM}>{"Decrease BPM"}</button>
       <br></br>
       <br></br>
-      <h3>Current BPM: {BPM}</h3>
+      <h3>Current milliseconds Interval: {BPM}</h3>
+      <h3>Current BMP: {Math.trunc((60 / BPM) * 1000)}</h3>
       <h4>Sounds</h4>
       <button type="button" onClick={electronicBeep}>
-        Electronic Beep!
+        Electronic Beep
+      </button>
+      <button type="button" onClick={metronomeSound}>
+        Metronome clicker
+      </button>
+      <button type="button" onClick={dogBark}>
+        Doggo!
       </button>
     </>
   );
