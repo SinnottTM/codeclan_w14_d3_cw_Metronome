@@ -3,11 +3,17 @@ import { useState, useEffect } from "react";
 import snd from "./electronicBeep";
 import metroSnd from "./metronomeSound";
 import dogBork from "./dogBork";
+import grandPiano from "./fartNoise";
+import gun from "./gunShot";
+import heartBeat from "./heartMonitor";
+import nelson from "./NelsonSimpsons";
+import turkey from "./thanksgiving";
 
 const MetronomeContainer = () => {
-  let [BPM, setBPM] = useState(500);
+  let [BPM, setBPM] = useState(800);
   const [beepId, setBeepId] = useState(null);
   const [playing, setPlaying] = useState(false);
+  const [playSound, setPlaySound] = useState(metroSnd);
 
   useEffect(() => {
     stopBeep();
@@ -15,27 +21,67 @@ const MetronomeContainer = () => {
   }, [BPM, playing]);
 
   let increaseBPM = () => {
-    setBPM((BPM += 50));
+    setBPM((BPM += 10));
   };
 
   let decreaseBPM = () => {
-    setBPM((BPM -= 50));
+    setBPM((BPM -= 10));
   };
+
+  let increaseBPMLarge = () => {
+      setBPM((BPM += 200));
+  };
+
+  let decreaseBPMLarge = () => {
+      setBPM((BPM -= 200));
+  };
+
+  function currentSound(){
+      playSound.play();
+  }
 
   function electronicBeep() {
     snd.play();
+    setPlaySound(snd);
   }
 
   function metronomeSound() {
     metroSnd.play();
+    setPlaySound(metroSnd);
   }
 
   function dogBark() {
     dogBork.play();
+    setPlaySound(dogBork);
   }
 
+  function nastySurprise() {
+      grandPiano.play();
+      setPlaySound(grandPiano);
+  }
+
+  function pewPew() {
+      gun.play();
+      setPlaySound(gun);
+  }
+
+  function heart() {
+      heartBeat.play();
+      setPlaySound(heartBeat);
+  }
+
+  function whaaaa() {
+      nelson.play();
+      setPlaySound(nelson);
+  }
+
+    function gooble() {
+      turkey.play();
+      setPlaySound(turkey);
+    }
+
   function startBeep() {
-    setBeepId(setInterval(electronicBeep, BPM));
+    setBeepId(setInterval(currentSound, BPM));
   }
 
   function stopBeep() {
@@ -49,8 +95,12 @@ const MetronomeContainer = () => {
       <button onClick={() => setPlaying(false)}>{"Stop"}</button>
       <br></br>
       <br></br>
-      <button onClick={increaseBPM}>{"Increase BPM"}</button>
-      <button onClick={decreaseBPM}>{"Decrease BPM"}</button>
+      <button onClick={decreaseBPM}>{"Increase BPM"}</button>
+      <button onClick={increaseBPM}>{"Decrease BPM"}</button>
+      <br></br>
+      <br></br>
+      <button onClick={decreaseBPMLarge}>{"Rapidly increase BPM"}</button>
+      <button onClick={increaseBPMLarge}>{"Rapidly decrease BPM"}</button>
       <br></br>
       <br></br>
       <h3>Current milliseconds Interval: {BPM}</h3>
@@ -63,7 +113,22 @@ const MetronomeContainer = () => {
         Metronome clicker
       </button>
       <button type="button" onClick={dogBark}>
-        Doggo!
+        Such a cute doggo!
+      </button>
+      <button type="button" onClick={nastySurprise}>
+        Delightful grand piano
+      </button>
+      <button type="button" onClick={pewPew}>
+        A deadly weapon
+      </button>
+      <button type="button" onClick={heart}>
+        We're losing him!
+      </button>
+      <button type="button" onClick={whaaaa}>
+        He's a scatman... we think
+      </button>
+      <button type="button" onClick={gooble}>
+        Turkey Time
       </button>
     </>
   );
