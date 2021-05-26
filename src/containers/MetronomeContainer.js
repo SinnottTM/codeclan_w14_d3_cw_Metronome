@@ -20,8 +20,6 @@ const MetronomeContainer = () => {
             <br></br>
             <Slider/>
             <br></br>
-            <MetronomeContainer/>
-            <br></br>
             <Player/>
 
         </>
