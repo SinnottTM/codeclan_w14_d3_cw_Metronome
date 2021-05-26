@@ -12,9 +12,10 @@ const MetronomeContainer = () => {
 
     return (
         <>
-
-            <h1> This is the MetronomeContainer </h1>
-            <h2>{somethingHereMetronomeContainer()}</h2>
+        
+            <br></br>   
+            <h3> This is the MetronomeContainer </h3>
+            <h4>{somethingHereMetronomeContainer()}</h4>
             <br></br>
             <SoundCollection/>
             <br></br>
